@@ -1,25 +1,27 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 
-/**
- * Write a description of class grieta here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class grieta extends Actor
+public class Grieta extends Actor
 {
     private int speed;
-    public grieta(int v){
-        GreenfootImage Imagen= getImage();
-        Imagen.scale(80,80);
-        speed= v;
-        
+    
+    public Grieta(int v) {
+        speed = v;
+        GreenfootImage imagen = getImage();
+        imagen.scale(80, 80);
     }
-    public void act(){
-    setLocation(getX(),getY() + speed);
-    if(getY()>= getWorld().getHeight()-1){
-        pista juego= (pista) getWorld();
-        juego.removeObject(this);
+    
+    public void act() {
+        setLocation(getX(), getY() + speed);
+       
+        if (getY() >= getWorld().getHeight() - 1) {
+            pista juego = (pista) getWorld();
+            juego.removeObject(this);
         }
+        
+        if (isTouching(Carro.class)) {
+            Greenfoot.stop();
+            getWorld().addObject(new GameOverActor(), getWorld().getWidth() / 2, getWorld().getHeight() / 2);
+        }
+    }
 }
-}
+
