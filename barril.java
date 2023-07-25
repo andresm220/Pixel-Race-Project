@@ -32,6 +32,7 @@ public class barril extends Actor
     if (isTouching(Carro.class)){
         
         Greenfoot.stop();
+        getWorld().addObject(new GameOverActor(), getWorld().getWidth() / 2, getWorld().getHeight() / 2);
     
     }
 
