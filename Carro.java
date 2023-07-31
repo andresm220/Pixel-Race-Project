@@ -9,11 +9,27 @@ import java.util.List;
 public class Carro extends Actor
 {
     private int velocidad;
+    private boolean inmunidad;
+    private int temporizador;
+    
     public Carro(int v){
         velocidad = 4;
         GreenfootImage Imagen= getImage();
-        Imagen.scale(115,115);
+        Imagen.scale(120,120);
+        inmunidad = false;
+        temporizador = 0;
         
+    }
+    public void ActivarInmunidad(){
+        inmunidad= true;
+        temporizador = 500;
+        
+    }
+    public void DesactivarInmunidad(){
+        inmunidad = false;
+    }
+    public boolean Inmune(){
+        return inmunidad;
     }
     /**
      * Act - do whatever the Carro wants to do. This method is called whenever
@@ -21,7 +37,14 @@ public class Carro extends Actor
      */
     public void act()
     {
-        // Add your action code here.
+        if (inmunidad){
+            if(temporizador>0){
+                temporizador--;
+                
+            } else {
+                DesactivarInmunidad();
+            }
+        }
         if(Greenfoot.isKeyDown("right")){
            if (getX()< 460)
                setLocation(getX()+3,getY());
@@ -39,12 +62,14 @@ public class Carro extends Actor
             if(getY() > 300)
                setLocation(getX(),getY()- velocidad); 
         }
-        if(CheckChoque()){
+        if(CheckChoque() && !Inmune()){
             Greenfoot.stop();
         getWorld().addObject(new GameOverActor(), getWorld().getWidth() / 2, getWorld().getHeight() / 2);
     
-        }
+        }  
         
+
+            
         
     }
     private boolean CheckChoque(){
