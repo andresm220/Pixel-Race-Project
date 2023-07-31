@@ -27,13 +27,11 @@ public class barril extends Actor
         if(getY()>= getWorld().getHeight()-1){
             pista juego= (pista) getWorld();
             juego.removeObject(this);
-            
+            juego.subir_puntos(10);
+            juego.reducir_rivales();
+            juego.subir_rebasos();
     }
-    if (isTouching(Carro.class)){
-        
-        Greenfoot.stop();
     
-    }
 
     }
 }

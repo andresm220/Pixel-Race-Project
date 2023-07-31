@@ -22,12 +22,12 @@ public class Carro extends Actor
         // Add your action code here.
         if(Greenfoot.isKeyDown("right")){
            if (getX()< 460)
-               setLocation(getX()+1,getY());
+               setLocation(getX()+3,getY());
            
         }
         if(Greenfoot.isKeyDown("left")){ 
            if(getX() > 140)
-               setLocation(getX()-1,getY()); 
+               setLocation(getX()-3,getY() ); 
         }
         if(Greenfoot.isKeyDown("down")){
             if(getY() < 640)
@@ -37,9 +37,12 @@ public class Carro extends Actor
             if(getY() > 300)
                setLocation(getX(),getY()- velocidad); 
         }
+        if (isTouching(barril.class)){
         
-        
-        
+        Greenfoot.stop();
+        getWorld().addObject(new GameOverActor(), getWorld().getWidth() / 2, getWorld().getHeight() / 2);
+    
+    }
     }
     public void checkChoque(){
          Actor choque= getOneIntersectingObject(barril.class);
@@ -51,6 +54,9 @@ public class Carro extends Actor
             
         }
         
+    }
+    public void subir_velo(){
+        velocidad++;
     }
        
     
