@@ -115,6 +115,23 @@ public class pista extends World
             
             
             obstaculos = 2;
+            if (obstaculos != 0){
+                carril= numeroRandom(0,3);
+                if (carril == 0){
+                    addObject(new PowerUp(velo),180,142);
+                
+                    
+                    
+                }
+                else if (carril == 1){
+                  addObject(new PowerUp(velo),290,142);  
+                }
+                else {
+                    addObject(new PowerUp(velo),410,142);
+                }
+            }
+            carril++;
+            carril= carril %3;
             
           
             

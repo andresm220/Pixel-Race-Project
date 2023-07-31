@@ -22,7 +22,7 @@ public class Carro extends Actor
     }
     public void ActivarInmunidad(){
         inmunidad= true;
-        temporizador = 500;
+        temporizador = 300;
         
     }
     public void DesactivarInmunidad(){

@@ -9,8 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class PowerUp extends Actor
 {
     private int velocidad;
-    public PowerUp(){
-        velocidad = 5;
+    public PowerUp(int v){
+        velocidad = v;
         GreenfootImage Imagen= getImage();
         Imagen.scale(60,60);
         
