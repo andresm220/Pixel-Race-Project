@@ -1,5 +1,5 @@
 #Greenfoot project file
-class.Carro.image=ferrari.png
+class.Carro.image=a07e43c30c7bf218fe156dcbaadc8e48-vehiculo-coche-pixel-rojo.png
 class.Game_over.image=Game\ over.png
 class.barril.image=barril.png
 class.pista.image=pista.png
@@ -21,10 +21,10 @@ dependency5.type=UsesDependency
 dependency6.from=Carro
 dependency6.to=barril
 dependency6.type=UsesDependency
-editor.fx.0.height=0
-editor.fx.0.width=0
-editor.fx.0.x=0
-editor.fx.0.y=0
+editor.fx.0.height=737
+editor.fx.0.width=814
+editor.fx.0.x=360
+editor.fx.0.y=28
 height=838
 package.numDependencies=6
 package.numTargets=6

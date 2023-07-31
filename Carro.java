@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.List;
 /**
  * Write a description of class Carro here.
  * 
@@ -10,7 +10,9 @@ public class Carro extends Actor
 {
     private int velocidad;
     public Carro(int v){
-        velocidad = v;
+        velocidad = 4;
+        GreenfootImage Imagen= getImage();
+        Imagen.scale(115,115);
         
     }
     /**
@@ -37,27 +39,24 @@ public class Carro extends Actor
             if(getY() > 300)
                setLocation(getX(),getY()- velocidad); 
         }
-        if (isTouching(barril.class)){
-        
-        Greenfoot.stop();
+        if(CheckChoque()){
+            Greenfoot.stop();
         getWorld().addObject(new GameOverActor(), getWorld().getWidth() / 2, getWorld().getHeight() / 2);
     
-    }
-    }
-    public void checkChoque(){
-         Actor choque= getOneIntersectingObject(barril.class);
-        if(choque != null){
-            getWorld().removeObject(choque);
-            getWorld().removeObject(this);
-            Greenfoot.stop();
-            System.out.print("GAME OVER");
-            
         }
         
+        
     }
-    public void subir_velo(){
+    private boolean CheckChoque(){
+        List<barril> barriles = getObjectsAtOffset(0,0,barril.class);
+        return !barriles.isEmpty();
+    }
+     public void subir_velo(){
         velocidad++;
     }
        
+    }
     
-}
+   
+    
+
