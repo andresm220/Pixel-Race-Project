@@ -42,9 +42,20 @@ public class Carro extends Actor
         if (inmunidad){
             if(temporizador>0){
                 temporizador--;
+                if (parpadeando) {
+                    GreenfootImage blanco = new GreenfootImage(getImage().getWidth(), getImage().getHeight());
+                    setImage(blanco);
+                } else {
+                   GreenfootImage original = new GreenfootImage("carro.png");
+                   original.scale(120, 120);
+                   setImage(original);
+                }
                 
             } else {
                 DesactivarInmunidad();
+                GreenfootImage original = new GreenfootImage("a07e43c30c7bf218fe156dcbaadc8e48-vehiculo-coche-pixel-rojo.png");
+                original.scale(120, 120);
+                setImage(original);
             }
         }
         if(Greenfoot.isKeyDown("right")){
