@@ -94,7 +94,7 @@ public class Carro extends Actor
         getWorld().addObject(new GameOverActor(), getWorld().getWidth() / 2, getWorld().getHeight() / 2);
         soundMuerte.play();
         carroSonido.stop();
-        soundFondo.stop();
+
     
         }  
         boolean upPresionadaActualmente = Greenfoot.isKeyDown("up");
