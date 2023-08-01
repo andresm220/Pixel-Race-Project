@@ -24,12 +24,16 @@ public class PowerUp extends Actor
         setLocation(getX(),getY() + velocidad);
         
         
-        
         Actor carro = getOneIntersectingObject(Carro.class);
-        if (carro != null){
+         if(carro != null){
             ((Carro)carro).ActivarInmunidad();
             getWorld().removeObject(this);
         }
+        else if (getY()>= getWorld().getHeight()-1){
+            pista juego= (pista) getWorld();
+            juego.removeObject(this);
+        }
         // Add your action code here.
-    }
+    
+}
 }
