@@ -1,5 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.List;
+import greenfoot.GreenfootSound;
 /**
  * Write a description of class Carro here.
  * 
@@ -12,6 +13,13 @@ public class Carro extends Actor
     private boolean inmunidad;
     private int temporizador;
     private boolean parpadeando = false;
+    private GreenfootSound carroSonido;
+    private boolean upPresionadaAnteriormente = false;
+    private boolean leftPresionadaAnteriormente = false;
+    private boolean rightPresionadaAnteriormente = false;
+    private GreenfootSound soundMuerte;
+    private GreenfootSound soundFondo;
+
 
     
     public Carro(int v){
@@ -20,6 +28,8 @@ public class Carro extends Actor
         Imagen.scale(120,120);
         inmunidad = false;
         temporizador = 0;
+        carroSonido = new GreenfootSound("carrosonidox.mp3");
+        soundMuerte = new GreenfootSound("muerte.mp3");
         
     }
     public void ActivarInmunidad(){
@@ -38,13 +48,17 @@ public class Carro extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
-    {
+    
+{
+
         if (inmunidad){
+            
             if(temporizador>0){
                 temporizador--;
                 if (parpadeando) {
                     GreenfootImage blanco = new GreenfootImage(getImage().getWidth(), getImage().getHeight());
                     setImage(blanco);
+                    
                 } else {
                    GreenfootImage original = new GreenfootImage("carro.png");
                    original.scale(120, 120);
@@ -78,10 +92,37 @@ public class Carro extends Actor
         if(CheckChoque() && !Inmune()){
             Greenfoot.stop();
         getWorld().addObject(new GameOverActor(), getWorld().getWidth() / 2, getWorld().getHeight() / 2);
+        soundMuerte.play();
+        carroSonido.stop();
+        soundFondo.stop();
     
         }  
-        
+        boolean upPresionadaActualmente = Greenfoot.isKeyDown("up");
+        boolean leftPresionadaActualmente = Greenfoot.isKeyDown("left");
+        boolean rightPresionadaActualmente = Greenfoot.isKeyDown("right");
 
+        if (upPresionadaActualmente && !upPresionadaAnteriormente) {
+            carroSonido.play();
+        } else if (!upPresionadaActualmente && upPresionadaAnteriormente) {
+            carroSonido.pause(); 
+        }
+        
+        if (leftPresionadaActualmente && !leftPresionadaAnteriormente) {
+            carroSonido.play(); 
+        } else if (!leftPresionadaActualmente && leftPresionadaAnteriormente) {
+            carroSonido.pause(); 
+        }
+    
+        if (rightPresionadaActualmente && !rightPresionadaAnteriormente) {
+            carroSonido.play(); 
+        } else if (!rightPresionadaActualmente && rightPresionadaAnteriormente) {
+            carroSonido.pause(); 
+        }
+
+
+        upPresionadaAnteriormente = upPresionadaActualmente;
+        leftPresionadaAnteriormente = leftPresionadaActualmente;
+        rightPresionadaAnteriormente = rightPresionadaActualmente;
             
         
     }
