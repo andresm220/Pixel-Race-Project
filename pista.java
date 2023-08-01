@@ -17,7 +17,7 @@ public class pista extends World
     private int rebaso_requerido;
     private Carro rojo;
     private int obstaculos;
-    
+    private int timer = 0;
     
     
     
@@ -75,6 +75,7 @@ public class pista extends World
             
         }
     }
+    
     public void añadir_obstaculos(){
         if (obstaculos == 0){
             int carril = numeroRandom(0,3);
@@ -115,21 +116,21 @@ public class pista extends World
             
             
             obstaculos = 2;
-            if (obstaculos != 0){
-                carril= numeroRandom(0,3);
-                if (carril == 0){
-                    addObject(new PowerUp(velo),180,142);
-                
-                    
-                    
+            timer++;
+            if (timer % 4 == 0) {
+                if (obstaculos != 0) {
+                    carril = numeroRandom(0,3);
+                    if (carril == 0) {
+                        addObject(new PowerUp(velo),180,142);
+                    } else if (carril == 1) {
+                        addObject(new PowerUp(velo),290,142);  
+                    } else {
+                        addObject(new PowerUp(velo),410,142);
+                    }
                 }
-                else if (carril == 1){
-                  addObject(new PowerUp(velo),290,142);  
-                }
-                else {
-                    addObject(new PowerUp(velo),410,142);
-                }
-            }
+    
+        timer = 0;
+    }
             carril++;
             carril= carril %3;
             

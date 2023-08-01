@@ -11,6 +11,8 @@ public class Carro extends Actor
     private int velocidad;
     private boolean inmunidad;
     private int temporizador;
+    private boolean parpadeando = false;
+
     
     public Carro(int v){
         velocidad = 4;
